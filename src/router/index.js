@@ -24,6 +24,11 @@ const routes = [
     name: 'Count',
     component: () => import( '../views/count')
   },
+  {
+    path: '/todo',
+    name: 'Todo',
+    component: () => import( '../views/todo')
+  },
   { path: '/*', redirect: '/' }
 
 ]
