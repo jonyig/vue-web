@@ -19,6 +19,11 @@ const routes = [
     name: 'Temperature',
     component: () => import( '../views/temperature')
   },
+  {
+    path: '/count',
+    name: 'Count',
+    component: () => import( '../views/count')
+  },
   { path: '/*', redirect: '/' }
 
 ]
