@@ -11,35 +11,24 @@
     <button @click="actionAddTodo">add todo</button>
 
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-12">
         <h2>Todo List:</h2>
-        <ul>
-          <li v-for="(item, index) in todoList" :key="index">
-            <label>
-              <button type="button" class="btn btn-secondary" @click="toggleTodo( item.key )">
-                check
-              </button>
-              {{ item.content }}
-            </label>
-            <button type="button" class="btn btn-danger" @click="deleteTodo( item.key )">
-              delete
-            </button>
-          </li>
-        </ul>
-      </div>
-      <div class="col-md-6">
-        <h2>Done List:</h2>
-        <ul>
-          <li v-for="(item, index) in doneList" :key="index">
-            <label>
-              <button type="button" class="btn btn-success" @click="toggleTodo( item.key )">Success</button>
-              {{ item.content }}
-            </label>
-          </li>
-        </ul>
+        <div v-for="(item, index) in todoList" :key="index" class="text-left row">
+          <label class="col-10">
+            <input
+                type="checkbox"
+                :checked="item.done"
+                @change="toggleTodo( item.key )">
+            <span :class="{lineThrough: item.done }">
+                {{ item.content }}
+              </span>
+          </label>
+          <button type="button" class="btn btn-outline-light col-2" @click="deleteTodo( item.key )">
+            X
+          </button>
+        </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -54,7 +43,6 @@ export default {
   },
   computed: {
     ...mapGetters({
-      doneList: 'getDone',
       todoList: 'getTodo',
     }),
   },
@@ -73,5 +61,12 @@ export default {
 </script>
 
 <style scoped>
+.lineThrough {
+  text-decoration: line-through;
+}
 
+.container{
+  margin: 0 auto;
+  width:300px;
+}
 </style>
