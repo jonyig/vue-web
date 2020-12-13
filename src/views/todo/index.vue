@@ -13,20 +13,7 @@
     <div class="row">
       <div class="col-md-12">
         <h2>Todo List:</h2>
-        <div v-for="(item, index) in todoList" :key="index" class="text-left row">
-          <label class="col-10">
-            <input
-                type="checkbox"
-                :checked="item.done"
-                @change="toggleTodo( item.key )">
-            <span :class="{lineThrough: item.done }">
-                {{ item.content }}
-              </span>
-          </label>
-          <button type="button" class="btn btn-outline-light col-2" @click="deleteTodo( item.key )">
-            X
-          </button>
-        </div>
+          <TodoItem v-for="(item, index) in todoList" :item="item" :key="index"></TodoItem>
       </div>
     </div>
   </div>
@@ -34,8 +21,12 @@
 
 <script>
 import {mapGetters, mapActions} from 'vuex'
+import TodoItem from "@/views/todo/TodoItem";
 
 export default {
+  components: {
+    TodoItem
+  },
   data() {
     return {
       newTodo: '',
@@ -61,10 +52,6 @@ export default {
 </script>
 
 <style scoped>
-.lineThrough {
-  text-decoration: line-through;
-}
-
 .container{
   margin: 0 auto;
   width:300px;

@@ -7,5 +7,6 @@ export const RESET = 'RESET';
 export const TODO = {
     ADD: 'TODO_ADD',
     TOGGLE: 'TODO_TOGGLE',
-    DELETE: 'TODO_DELETE'
+    DELETE: 'TODO_DELETE',
+    UPDATE: 'TODO_UPDATE'
 }

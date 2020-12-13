@@ -54,6 +54,10 @@ export const mutations = {
         const index = state.todos.findIndex(item => item.key === key)
         state.todos.splice(index, 1)
         console.log(`TODOS DELETED. key: ${key}, index: ${index}`)
+    },
+    [types.TODO.UPDATE](state, obj) {
+        const item = state.todos.find(item => item.key === obj.key)
+        item.content = obj.change
     }
 }
 
