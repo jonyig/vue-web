@@ -1,8 +1,13 @@
-import * as types from './mutations_type.js'
+
+const types = {
+    ADD: 'TODO_ADD',
+    TOGGLE: 'TODO_TOGGLE',
+    DELETE: 'TODO_DELETE',
+    UPDATE: 'TODO_UPDATE'
+}
 
 // state
-export const state = {
-    count: 0,
+const state = {
     todos: [
         {key: 0, content: 'vue.js 2.0', done: true},
         {key: 1, content: 'vuex 2.0', done: false},
@@ -13,27 +18,35 @@ export const state = {
 }
 let todoKey = state.todos.length;
 
+const getters = {
+    getTodo: state => state.todos
+}
+
+//todo
+const actions = {
+    actionAddTodo({commit}, newTodo) {
+        // 直接將 newTodo 傳遞給 mutation
+        commit(types.ADD, newTodo);
+    },
+
+    toggleTodo({commit}, key) {
+        commit(types.TOGGLE, key);
+    },
+
+    deleteTodo({commit}, key) {
+        commit(types.DELETE, key);
+    },
+
+    updateTodo({commit}, obj) {
+        console.log('updateTodo', obj);
+        commit(types.UPDATE, obj);
+    }
+
+}
+
 // mutations
-export const mutations = {
-    // action 發出 commit 會對應到 mutation 使用的是 Object key 方式
-    [types.INCREASE](state, num) {
-        state.count += Number(num);
-    },
-    [types.DECREASE](state, num) {
-        state.count -= Number(num);
-    },
-    [types.MULTIPLE](state, num) {
-        state.count *= Number(num);
-    },
-    [types.DIVISION](state, num) {
-        state.count /= Number(num);
-    },
-    [types.RESET](state) {
-        state.count = 0;
-    },
-
-
-    [types.TODO.ADD](state, newTodo) {
+const mutations = {
+    [types.ADD](state, newTodo) {
         // todos 是一個 Array 所以 push 一個同結構的 Object
         console.log(newTodo)
         state.todos.push({
@@ -45,19 +58,25 @@ export const mutations = {
         todoKey++;
     },
 
-    [types.TODO.TOGGLE](state, key) {
-        const item = state.todos.find(item => item.key === key)
-        item.done = !item.done
+    [types.TOGGLE](state, obj) {
+        const item = state.todos.find(item => item.key === obj.key)
+        item.done = obj.checked
         console.log('TOGGLE_TODO:', item.content, 'done?', item.done);
     },
-    [types.TODO.DELETE](state, key) {
+    [types.DELETE](state, key) {
         const index = state.todos.findIndex(item => item.key === key)
         state.todos.splice(index, 1)
         console.log(`TODOS DELETED. key: ${key}, index: ${index}`)
     },
-    [types.TODO.UPDATE](state, obj) {
+    [types.UPDATE](state, obj) {
         const item = state.todos.find(item => item.key === obj.key)
         item.content = obj.change
     }
 }
 
+export default {
+    state,
+    actions,
+    getters,
+    mutations
+}

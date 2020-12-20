@@ -1,18 +1,10 @@
 <template>
   <div class="text-left row" v-if="!updateMode">
     <label class="col-8">
-      <input
-          type="checkbox"
-          :checked="item.done"
-          @change="toggleTodo( item.key )"
-      >
-      <span
-          :class="{lineThrough: item.done }">
-                {{ item.content }}
-      </span>
+      <CustomCheckbox :item="item" @toggleTodo="toggleTodo"></CustomCheckbox>
     </label>
     <button type="button" class="btn btn-outline-secondary col-2" @click="showEditMode">
-      x
+      U
     </button>
     <button type="button" class="btn btn-outline-dark col-2" @click="deleteTodo( item.key )">
       X
@@ -33,9 +25,11 @@
 
 <script>
 import {mapActions} from "vuex";
+import CustomCheckbox from "@/views/todo/CustomCheckbox";
 
 export default {
   name: "TodoItem",
+  components: { CustomCheckbox },
   props: {
     item: Object
   },
@@ -80,9 +74,6 @@ export default {
 </script>
 
 <style scoped>
-.lineThrough {
-  text-decoration: line-through;
-}
 
 .edit-input {
   line-height: 1em;
