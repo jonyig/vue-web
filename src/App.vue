@@ -5,7 +5,8 @@
       <router-link to="/about">About</router-link> |
       <router-link to="/temperature">temperature</router-link> |
       <router-link to="/count">count</router-link> |
-      <router-link to="/todo">todo</router-link>
+      <router-link to="/todo">todo</router-link> |
+      <router-link to="/shop">shop</router-link>
     </div>
     <router-view/>
   </div>

@@ -29,6 +29,11 @@ const routes = [
     name: 'Todo',
     component: () => import( '../views/todo')
   },
+  {
+    path: '/shop',
+    name: 'Shop',
+    component: () => import( '../views/shop')
+  },
   { path: '/*', redirect: '/' }
 
 ]
