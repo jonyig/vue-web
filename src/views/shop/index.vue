@@ -1,6 +1,8 @@
 <template>
   <div>
     <!-- Top menu -->
+    <font-awesome-icon icon="air-freshener" />
+
     <div class="w3-white w3-xlarge w3-padding-xlarge" style="max-width:1200px;margin:auto">
       <div class="w3-right">
         <router-link :to="{name: 'cart'}">
@@ -8,7 +10,6 @@
           <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> {{ cartTotal }}</span>
         </router-link>
       </div>
-      <div class="w3-center">Shop</div>
     </div>
     <!-- !PAGE CONTENT! -->
     <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
