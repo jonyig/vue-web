@@ -67,6 +67,9 @@ const getters = {
 const actions = {
     addCart({commit}, id) {
         commit(types.ADD_CART, id);
+    },
+    cancelCart({commit}, id) {
+        commit(types.CANCEL_CART, id);
     }
 }
 
@@ -78,6 +81,7 @@ const mutations = {
         product.inventory = product.inventory - 1;
         // 餐點加入購物車 title, price
         state.shoppingCart.push({
+            id: product.id,
             title: product.title,
             price: product.price,
         });
